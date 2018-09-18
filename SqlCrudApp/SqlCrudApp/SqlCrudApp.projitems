@@ -20,5 +20,6 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Persistence\ISQLiteDb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Test.cs" />
   </ItemGroup>
 </Project>

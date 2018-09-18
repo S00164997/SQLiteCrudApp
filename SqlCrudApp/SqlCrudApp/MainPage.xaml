@@ -8,4 +8,20 @@
            VerticalOptions="Center" 
            HorizontalOptions="Center" />
 
+    <StackLayout>
+        <Label Text="Save Your Notes:"></Label>
+        <Entry Placeholder="Enter Notes Title" x:Name="Title"></Entry>
+        <Entry Placeholder="Enter Notes Description" x:Name="Description"></Entry>
+        <Button Text="ADD NOTE" Clicked="OnAdd"></Button>
+
+        <Label Text="Saved Note" VerticalOptions="End"></Label>
+        <ListView VerticalOptions="EndAndExpand" x:Name="mylistview">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Title}" Detail="{Binding Desc}"></TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
 </ContentPage>
