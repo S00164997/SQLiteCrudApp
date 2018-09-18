@@ -12,6 +12,7 @@ namespace SqlCrudApp
 		public MainPage()
 		{
 			InitializeComponent();
+            //mc
 		}
 	}
 }
