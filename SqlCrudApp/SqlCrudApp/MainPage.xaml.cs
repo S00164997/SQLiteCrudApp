@@ -21,6 +21,7 @@ namespace SqlCrudApp
             //2   https://www.c-sharpcorner.com/article/data-persistence-using-sqlite-in-xamarin-forms/
             _connection = DependencyService.Get<ISQLiteDb>().GetConnection();
 
+            
 
 
         }
@@ -35,11 +36,19 @@ namespace SqlCrudApp
             base.OnAppearing();
         }
 
-        void OnAdd(object sender, System.EventArgs e)
+        void OnSelectedItem(object sender, SelectedItemChangedEventArgs e)
+        { // Them cast the object SENDER to your Datasource Object, my case House House myHouse = sender as House; 
+            var selection = mylistview.SelectedItem as test;
+            Title.Text = selection.Title.ToString();
+            Description.Text = selection.Desc.ToString();
+        }
+
+            void OnAdd(object sender, System.EventArgs e)
         {
             var test = new test { Title = Title.Text, Desc = Description.Text };
             _connection.InsertAsync(test);
             _test.Add(test);
+            
         }
 
 
@@ -53,9 +62,6 @@ namespace SqlCrudApp
             }
             else
             {
-                
-
-
                 _connection.DeleteAsync(selection);
                 _test.Remove(selection);
             }
@@ -72,19 +78,19 @@ namespace SqlCrudApp
             }
             else
             {
-                selection.Title = Title.Text;
-                selection.Desc = Description.Text;
+                //Title.Text = selection.Title.ToString();
+                //Description.Text = selection.Desc.ToString();
+                //selection.Desc = Description.Text;
 
-                    var edit = new  test { Title = Title.Text, Desc = Description.Text };
+                    var edit = new  test {id = selection.id, Title = Title.Text, Desc = Description.Text };
 
-                _connection.DeleteAsync(selection);
+                _connection.UpdateAsync(edit);
                 _test.Remove(selection);
+                _test.Add(edit);
             }
             
 
-            var test = new test { Title = Title.Text, Desc = Description.Text };
-            _connection.UpdateAsync(test);
-            _test.Add(test);
+           
 
             //var selection = listView.SelectedItem as Product;
             //if (selection == null)
