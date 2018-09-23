@@ -13,7 +13,8 @@
         <Entry Placeholder="Enter Notes Title" x:Name="Title"></Entry>
         <Entry Placeholder="Enter Notes Description" x:Name="Description"></Entry>
         <Button Text="ADD NOTE" Clicked="OnAdd"></Button>
-
+        <Button Text="DELETE NOTE" Clicked="OnDelete"></Button>
+        <Button Text="EDIT NOTE" Clicked="OnUpdate"></Button>
         <Label Text="Saved Note" VerticalOptions="End"></Label>
         <ListView VerticalOptions="EndAndExpand" x:Name="mylistview">
             <ListView.ItemTemplate>

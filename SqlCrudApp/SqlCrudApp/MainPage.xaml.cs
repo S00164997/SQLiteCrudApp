@@ -41,6 +41,63 @@ namespace SqlCrudApp
             _connection.InsertAsync(test);
             _test.Add(test);
         }
+
+
+        void OnDelete(object sender, System.EventArgs e)
+        {
+            var selection = mylistview.SelectedItem as test;
+
+            if (selection == null)
+            {
+                DisplayAlert("Select Item", "Please select Item to Delete", "Ok");
+            }
+            else
+            {
+                
+
+
+                _connection.DeleteAsync(selection);
+                _test.Remove(selection);
+            }
+        }
+
+        void OnUpdate(object sender, System.EventArgs e)
+        {
+
+            var selection = mylistview.SelectedItem as test;
+
+            if (selection == null)
+            {
+                DisplayAlert("Select Item", "Please select Item to Edit", "Ok");
+            }
+            else
+            {
+                selection.Title = Title.Text;
+                selection.Desc = Description.Text;
+
+                    var edit = new  test { Title = Title.Text, Desc = Description.Text };
+
+                _connection.DeleteAsync(selection);
+                _test.Remove(selection);
+            }
+            
+
+            var test = new test { Title = Title.Text, Desc = Description.Text };
+            _connection.UpdateAsync(test);
+            _test.Add(test);
+
+            //var selection = listView.SelectedItem as Product;
+            //if (selection == null)
+            //{
+            //    DisplayAlert("Select Item", "Please select Item to repeat", "Ok");
+            //}
+            //else
+            //{
+            //    //await DisplayAlert("mm", "Product: " + selection.Id, "ok");
+            //    Product temp = new Product { Id = selection.Id, ProductName = selection.ProductName, Barcode = selection.Barcode, Price = selection.Price, Quantity = selection.Quantity };
+            //    TillPage.Products2.Add(temp);
+            //}
+        }
     }
 }
 
